@@ -1,43 +1,75 @@
-import { Linkedin, Mail } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ArrowDown, Mail } from "lucide-react";
+
+const roles = ["SaaS", "FinTech", "HealthTech"];
 
 export default function Hero() {
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [displayed, setDisplayed] = useState("");
+  const [typing, setTyping] = useState(true);
+
+  useEffect(() => {
+    const word = roles[roleIndex];
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (typing) {
+      if (displayed.length < word.length) {
+        timeout = setTimeout(() => setDisplayed(word.slice(0, displayed.length + 1)), 100);
+      } else {
+        timeout = setTimeout(() => setTyping(false), 1500);
+      }
+    } else {
+      if (displayed.length > 0) {
+        timeout = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 60);
+      } else {
+        setRoleIndex((i) => (i + 1) % roles.length);
+        setTyping(true);
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayed, typing, roleIndex]);
+
   return (
-    <section className="min-h-[90vh] flex items-center justify-center pt-16">
-      <div className="max-w-3xl mx-auto px-6 text-center">
-        {/* Avatar placeholder */}
-        <div className="w-28 h-28 rounded-full bg-secondary border-4 border-primary/20 mx-auto mb-8 flex items-center justify-center text-3xl font-bold text-primary">
-          SG
-        </div>
+    <section className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute inset-0 bg-radial-glow pointer-events-none" />
 
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-tight mb-4">
-          Driving Growth across{" "}
-          <span className="text-primary">SaaS</span>,{" "}
-          <span className="text-primary">FinTech</span>, and{" "}
-          <span className="text-primary">HealthTech</span>.
-        </h1>
-
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-          Product Manager and Strategy Professional with 2+ years of experience.
-          I align technical execution with business strategy to accelerate
-          adoption and deliver measurable value.
+      <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
+        <p className="text-sm font-medium text-muted-foreground mb-4 tracking-widest uppercase animate-fade-up" style={{ animationDelay: "0.1s" }}>
+          Product Manager & Strategy Professional
         </p>
 
-        <div className="flex items-center justify-center gap-4">
+        <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tight text-foreground leading-tight mb-6 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+          Hi there, I am{" "}
+          <span className="gradient-text">Surya</span>.
+        </h1>
+
+        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-4 leading-relaxed animate-fade-up" style={{ animationDelay: "0.3s" }}>
+          I bridge the gap between technical execution and business strategy.
+        </p>
+
+        <div className="h-8 mb-10 animate-fade-up" style={{ animationDelay: "0.4s" }}>
+          <span className="text-lg font-display font-medium text-primary">
+            {displayed}
+          </span>
+          <span className="inline-block w-0.5 h-5 bg-primary ml-0.5 animate-glow-pulse align-middle" />
+        </div>
+
+        <div className="flex items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.5s" }}>
           <a
-            href="https://linkedin.com/in/surya-gummalla"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary text-foreground text-sm font-medium hover:bg-secondary/80 transition-colors"
+            href="#experience"
+            className="glow-button text-primary-foreground font-medium px-6 py-3 rounded-lg inline-flex items-center gap-2"
           >
-            <Linkedin className="h-4 w-4" />
-            LinkedIn
+            <ArrowDown className="h-4 w-4" />
+            View Work
           </a>
           <a
-            href="mailto:surya7824@gmail.com"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary text-foreground text-sm font-medium hover:bg-secondary/80 transition-colors"
+            href="#contact"
+            className="glow-outline bg-transparent text-foreground font-medium px-6 py-3 rounded-lg inline-flex items-center gap-2"
           >
             <Mail className="h-4 w-4" />
-            Email
+            Contact Me
           </a>
         </div>
       </div>
