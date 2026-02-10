@@ -3,7 +3,7 @@ import { Menu, X, Download } from "lucide-react";
 
 const navLinks = [
   { label: "Experience", href: "#experience" },
-  { label: "Work", href: "#work" },
+  { label: "Projects", href: "#work" },
   { label: "Skills", href: "#skills" },
   { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
@@ -29,7 +29,7 @@ export default function Header() {
     >
       <div className="max-w-5xl mx-auto flex items-center justify-between px-6 h-16">
         <a href="#" className="text-lg font-display font-bold text-foreground tracking-tight">
-          Surya<span className="gradient-text">.</span>
+          Surya Gummalla<span className="gradient-text">.</span>
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
