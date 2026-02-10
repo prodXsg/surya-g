@@ -41,9 +41,9 @@ function SpotlightCard({ children, className = "" }: { children: React.ReactNode
 }
 
 const education = [
-  { icon: GraduationCap, degree: "MBA", school: "Alliance University", detail: "Strategic Management & Marketing" },
-  { icon: GraduationCap, degree: "BBA", school: "GITAM University", detail: "Business Administration" },
-  { icon: Award, degree: "AI PM Certification", school: "HelloPM", detail: "AI/ML Product Strategy" },
+  { icon: GraduationCap, degree: "MBA", school: "Alliance University", detail: "Strategic Management & Marketing", year: "2021 – 2023" },
+  { icon: GraduationCap, degree: "BBA", school: "GITAM University", detail: "Business Administration", year: "2016 – 2019" },
+  { icon: Award, degree: "AI PM Certification", school: "HelloPM", detail: "AI/ML Product Strategy", year: "2025" },
 ];
 
 export default function Education() {
@@ -63,6 +63,7 @@ export default function Education() {
                 <h3 className="font-display font-semibold text-foreground text-sm">{e.degree}</h3>
                 <p className="text-sm text-muted-foreground">{e.school}</p>
                 <p className="text-xs text-muted-foreground mt-1">{e.detail}</p>
+                <p className="text-xs text-primary font-medium mt-2">{e.year}</p>
               </SpotlightCard>
             </FadeIn>
           ))}

@@ -46,7 +46,7 @@ export default function Hero() {
         </h1>
 
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-4 leading-relaxed animate-fade-up" style={{ animationDelay: "0.3s" }}>
-          I bridge the gap between technical execution and business strategy.
+          Product Manager with 2+ years of experience across SaaS, FinTech, and HealthTech, and 4+ years of overall professional experience spanning product strategy, market intelligence, and business operations.
         </p>
 
         <div className="h-8 mb-10 animate-fade-up" style={{ animationDelay: "0.4s" }}>
